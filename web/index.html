@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Year in Review</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Loading screen -->
+        <div id="loadingScreen" class="screen loading-screen">
+            <div class="fingerprint-scanner">
+                <div class="fingerprint-icon">👆</div>
+                <p class="fingerprint-text">I want to see my year's results</p>
+                <p class="fingerprint-subtitle">Hold your finger in the center of the screen</p>
+            </div>
+        </div>
+
+        <!-- Slides container -->
+        <div id="slidesContainer" class="slides-container" style="display: none;">
+            <!-- Slide 0: Intro -->
+            <div class="slide slide-intro" data-slide="0">
+                <div class="slide-content intro-content">
+                    <h1>I want to see my year's results</h1>
+                    <p>Hold your finger in the center of the screen</p>
+                    <div class="fingerprint-scanner-small">
+                        <div class="fingerprint-icon-small">👆</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 1: Rising Star -->
+            <div class="slide slide-blue" data-slide="1">
+                <div class="slide-content">
+                    <div class="emoji-large">🌟</div>
+                    <h2>Rising star!</h2>
+                    <p class="subtitle">You joined Telegram</p>
+                    <p id="stat-1" class="stat-value">1,345 days ago</p>
+                </div>
+            </div>
+
+            <!-- Slide 2: Messages Count -->
+            <div class="slide slide-orange" data-slide="2">
+                <div class="slide-content">
+                    <div class="emoji-large">📊</div>
+                    <h2>Messages count</h2>
+                    <p class="subtitle">Total you wrote in public chats</p>
+                    <p id="stat-2" class="stat-value large">1,531</p>
+                    <p class="stat-label">messages</p>
+                </div>
+            </div>
+
+            <!-- Slide 3: Voice Messages -->
+            <div class="slide slide-gray" data-slide="3">
+                <div class="slide-content">
+                    <div class="emoji-large">🎙</div>
+                    <h2>Voice messages count</h2>
+                    <p class="subtitle">You were definitely heard this year!</p>
+                    <p class="stat-label">Total voice messages you recorded:</p>
+                    <p id="stat-3" class="stat-value large">40,734</p>
+                </div>
+            </div>
+
+            <!-- Slide 4: Round Videos -->
+            <div class="slide slide-blue-alt" data-slide="4">
+                <div class="slide-content">
+                    <div class="emoji-large">🎬</div>
+                    <h2>Round videos count</h2>
+                    <p class="subtitle">The camera loves you!</p>
+                    <p class="stat-label">Total round videos you recorded:</p>
+                    <p id="stat-4" class="stat-value large">4,492</p>
+                </div>
+            </div>
+
+            <!-- Slide 5: Time Opened -->
+            <div class="slide slide-light-blue" data-slide="5">
+                <div class="slide-content">
+                    <div class="emoji-large">⏰</div>
+                    <h2>Time you open Telegram</h2>
+                    <p class="subtitle">Keeping a daily routine?</p>
+                    <p class="stat-label">Most often you used Telegram</p>
+                    <p id="stat-5" class="stat-value">Daytime 🌤</p>
+                </div>
+            </div>
+
+            <!-- Slide 6: Last Message -->
+            <div class="slide slide-purple" data-slide="6">
+                <div class="slide-content">
+                    <div class="emoji-large">📅</div>
+                    <h2>Last message date</h2>
+                    <p class="subtitle">Activity — at maximum!</p>
+                    <p class="stat-label">You sent your last message</p>
+                    <p id="stat-6" class="stat-value">2 December, 2025</p>
+                </div>
+            </div>
+
+            <!-- Slide 7: Fastest Reply -->
+            <div class="slide slide-green" data-slide="7">
+                <div class="slide-content">
+                    <div class="emoji-large">⚡</div>
+                    <h2>Fastest reply</h2>
+                    <p class="subtitle">Were you online 24/7?</p>
+                    <p class="stat-label">Fastest reply to a message</p>
+                    <p id="stat-7" class="stat-value">< 0.6 seconds</p>
+                </div>
+            </div>
+
+            <!-- Slide 8: Longest Reply -->
+            <div class="slide slide-gray-dark" data-slide="8">
+                <div class="slide-content">
+                    <div class="emoji-large">🐌</div>
+                    <h2>Longest reply</h2>
+                    <p class="subtitle">Seems like someone was clearly ignored by you.</p>
+                    <p class="stat-label">Your slowest reply</p>
+                    <p id="stat-8" class="stat-value">68 hours</p>
+                </div>
+            </div>
+
+            <!-- Slide 9: Hidden Online -->
+            <div class="slide slide-red" data-slide="9">
+                <div class="slide-content">
+                    <div class="emoji-large">🔥</div>
+                    <h2>"Hidden" online</h2>
+                    <p class="subtitle">Days of silence?</p>
+                    <p class="stat-label">How many times you opened Telegram but didn't reply to anyone</p>
+                    <p id="stat-9" class="stat-value large">2,942</p>
+                </div>
+            </div>
+
+            <!-- Slide 10: Unsent Messages -->
+            <div class="slide slide-light-blue-2" data-slide="10">
+                <div class="slide-content">
+                    <div class="emoji-large">✏️</div>
+                    <h2>Unsent messages</h2>
+                    <p class="subtitle">You wanted to say a lot... but changed your mind.</p>
+                    <p class="stat-label">Number of messages:</p>
+                    <p id="stat-10" class="stat-value large">6,648</p>
+                </div>
+            </div>
+
+            <!-- Slide 11: Longest Session -->
+            <div class="slide slide-purple-light" data-slide="11">
+                <div class="slide-content">
+                    <div class="emoji-large">🏆</div>
+                    <h2>Longest session</h2>
+                    <p class="subtitle">Your morning doesn't start with coffee — Telegram first.</p>
+                    <p class="stat-label">You opened Telegram</p>
+                    <p id="stat-11" class="stat-value">16 days in a row</p>
+                </div>
+            </div>
+
+            <!-- Slide 12: Longest Ignore -->
+            <div class="slide slide-green-light" data-slide="12">
+                <div class="slide-content">
+                    <div class="emoji-large">📪</div>
+                    <h2>Longest ignore period</h2>
+                    <p class="subtitle">Someone was unlucky...</p>
+                    <p class="stat-label">You ignored someone</p>
+                    <p id="stat-12" class="stat-value">3 days in a row</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div id="navButtons" class="nav-buttons" style="display: none;">
+            <button id="backBtn" class="btn btn-back" onclick="previousSlide()">Back</button>
+            <button id="continueBtn" class="btn btn-continue" onclick="nextSlide()">Continue</button>
+        </div>
+
+        <!-- Slide indicator -->
+        <div id="slideIndicator" class="slide-indicator" style="display: none;">
+            <span id="currentSlide">1</span> / <span id="totalSlides">13</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
